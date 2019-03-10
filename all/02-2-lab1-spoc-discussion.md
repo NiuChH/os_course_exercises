@@ -65,9 +65,14 @@
 ## 开放思考题
 
 1. 在ucore/rcore中如何修改lab1, 实现在出现除零异常时显示一个字符串的异常服务例程？
+   1. 需要在 `kern/trap/trap.c` 的 `trap_dispatch` 中加入对 `T_DIVIDE` 的支持。
 2. 在ucore lab1/bin目录下，通过`objcopy -O binary kernel kernel.bin`可以把elf格式的ucore kernel转变成体积更小巧的binary格式的ucore kernel。为此，需要如何修改lab1的bootloader, 能够实现正确加载binary格式的ucore OS？ (hard)
+   1. 
 3. GRUB是一个通用的x86 bootloader，被用于加载多种操作系统。如果放弃lab1的bootloader，采用GRUB来加载ucore OS，请问需要如何修改lab1, 能够实现此需求？ (hard)
+   1. 
 4. 如果没有中断，操作系统设计会有哪些问题或困难？在这种情况下，能否完成对外设驱动和对进程的切换等操作系统核心功能？
+   1. 操作系统会无法处理突发的异常情况，也无法在用户进程中获得控制权。
+   2. 系统可以通过轮询的方式对外设驱动进行控制，可以要求用户程序定期主动释放CPU来切换进程。
 
 ## 课堂实践
 ### 练习一
